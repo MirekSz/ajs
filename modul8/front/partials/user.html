@@ -2,7 +2,8 @@
   <h1>{{id}}</h1>
   <div class="body">
     <input name="fname" value="{{fName}}"/>
-    <input name="lname" value="{{lName}}"/>
+    {{> field name="fName"}}
+    {{> field2 name="lname" label="Imię"}}
   </div>
   <button>Save</button>
 </form>

@@ -29,6 +29,14 @@ $(document).ready(function () {
         // Animation complete.
     });
 
+    Handlebars.registerPartial("field",'<input name="{{name}}" value="{{twice name}}" />')
+    Handlebars.registerPartial("field2",` <div class="form-group">
+    <label for="{{name}}">{{label}}</label>
+    <input  class="form-control" name="{{name}}" value="{{twice name}}" placeholder="{{label}}">
+  </div>`)
+    Handlebars.registerHelper('twice', function(obj,options) {
+        return options.data.root[obj];
+    })
 
 })
 

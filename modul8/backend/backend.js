@@ -16,7 +16,7 @@ class User{
 
 let app = express();
 app.listen(3100, function () {
-    console.log('listening on 3000');
+    console.log('listening on 3100');
 });
 
 app.use(bodyParser.json({type: '*/*'}));
@@ -47,6 +47,12 @@ app.get('/users', function (request, response) {
     response.send(users);
 });
 
+
+app.get('/users/:id', function (request, response) {
+    let found = users.findIndex(user => user.id == request.params.id);
+    response.send(users[found]);
+});
+
 app.post('/users', function (request, response) {
     let user = request.body;
     user.id = generateID();
@@ -56,7 +62,7 @@ app.post('/users', function (request, response) {
 
 app.put('/users', function (request, response) {
     let editedUser = request.body;
-    let found = users.find(user => user.id === editedUser.id);
+    let found = users.find(user => user.id == editedUser.id);
     if (found) {
         Object.assign(found, editedUser);
     }
@@ -64,7 +70,7 @@ app.put('/users', function (request, response) {
 });
 
 app.delete('/users/:id', function (request, response) {
-    let found = users.findIndex(user => user.id === request.params.id);
+    let found = users.findIndex(user => user.id == request.params.id);
     users.splice(found, 1);
     response.end();
 });

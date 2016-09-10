@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "start": "node backend.js"
+  },
   "devDependencies": {
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",

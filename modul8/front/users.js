@@ -29,12 +29,12 @@ $(document).ready(function () {
         // Animation complete.
     });
 
-    Handlebars.registerPartial("field",'<input name="{{name}}" value="{{twice name}}" />')
-    Handlebars.registerPartial("field2",` <div class="form-group">
+    Handlebars.registerPartial("field",'<input name="{{name}}" value="{{de name}}" />')
+    Handlebars.registerPartial("field2",` <div class="form-group col-xs-6">
     <label for="{{name}}">{{label}}</label>
-    <input  class="form-control" name="{{name}}" value="{{twice name}}" placeholder="{{label}}">
+    <input  class="form-control" name="{{name}}" value="{{de name}}" placeholder="{{label}}">
   </div>`)
-    Handlebars.registerHelper('twice', function(obj,options) {
+    Handlebars.registerHelper('de', function(obj, options) {
         return options.data.root[obj];
     })
 

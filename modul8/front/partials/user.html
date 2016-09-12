@@ -3,7 +3,12 @@
   <div class="body">
     <input name="fname" value="{{fName}}"/>
     {{> field name="fName"}}
-    {{> field2 name="lname" label="Imię"}}
+    <br/>
+    <br/>
+    <div class="row">
+    {{> field2 name="fName" label="Imię"}}
+    {{> field2 name="lName" label="Nazwisko"}}
   </div>
-  <button>Save</button>
+  </div>
+  <button class="btn btn-default">Save</button>
 </form>

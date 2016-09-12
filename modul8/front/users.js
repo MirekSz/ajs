@@ -2,9 +2,9 @@ $(document).ready(function () {
     let table = $("#users");
     ;
     console.log(table.find("tr"))
-    table.append('<tr><td>ad</td></tr>')
+    // table.append('<tr><td>ad</td></tr>')
 
-    table.find("tr")[3].remove();
+    // table.find("tr")[3].remove();
 
     let tablefindtrtd2 = table.find("tr").find("td:eq(2)");
     tablefindtrtd2.each(function (index, element) {
@@ -38,6 +38,17 @@ $(document).ready(function () {
         return options.data.root[obj];
     })
 
+    $("div button.btn.btn-primary").click(function (event) {
+        event.preventDefault();
+        console.time('jquery');
+        let form = $(event.currentTarget).closest('div').siblings('.modal-body').find('form');
+        console.timeEnd('jquery');
+        console.log(form)
+        var s = $(form).serializeArray()
+        console.log(s)
+    });
+
+    loadUsers();
 })
 
 function closeTable() {
@@ -49,27 +60,22 @@ function closeTable() {
     });
 }
 
-$.ajax({
-    type: 'GET',
-    url: "http://localhost:3100/users"
-}).done(function (data) {
+function loadUsers(){
+  $("table").empty();
+  $.ajax({
+      type: 'GET',
+      url: "http://localhost:3100/users"
+  }).done(function (data) {
 
-    loadTemplate('user-row', function (row) {
-        for (i = 0; i < data.length; i++) {
-            var user = data[i];
+      loadTemplate('user-row', function (row) {
+          for (i = 0; i < data.length; i++) {
+              var user = data[i];
 
-            $("table").append(row(user));
-            // $("body").append(userTemplate(user));
-        }
-        $("form button").click(function (event) {
-            event.preventDefault();
-            var s = $(event.currentTarget.parentElement).serializeArray()
-            console.log(s)
-        })
-    })
-
+              $("table").append(row(user));
+          }
+      })
 });
-
+}
 
 function loadTemplate(name, callback) {
     $.ajax({
@@ -91,6 +97,26 @@ function show(id) {
             $('#myModal').modal({})
         })
     });
+}
+
+function remove(id){
+  swal({
+    title: "Are you sure?",
+    text: "You will not be able to recover this imaginary file!",
+     type: "warning",
+     showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+       closeOnConfirm: true
+     }, function(){
+       $.ajax({
+           type: 'DELETE',
+           url: "http://localhost:3100/users/"+id,
+           dataType : 'html'
+       }).done(function (user) {
+          loadUsers();
+       });
+      });
 }
 
 

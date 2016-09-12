@@ -13,7 +13,6 @@ class User{
     this.sex=sex;
   }
 }
-//comment
 
 let app = express();
 app.listen(3100, function () {

@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var path = require('path')
+var router = require('express').Router();
 
 function readFiles(dirname, onFileContent, onError) {
     fs.readdir(dirname, function(err, filenames) {
@@ -37,14 +38,15 @@ function select(howMany) {
     }
     return result;
 }
-module.exports = function(app) {
-    app.get('/phones/:name', function(request, response) {
-        var image = request.params.name
-        response.writeHead(200, {
-            "Content-Type": "application/octet-stream",
-            "Content-Disposition": "attachment; filename=" + image
-        });
-        fs.createReadStream(path.join(__dirname, 'phones/', image)).pipe(response);
+router.get('/:name', function(request, response) {
+    var image = request.params.name
+    response.writeHead(200, {
+        "Content-Type": "application/octet-stream",
+        "Content-Disposition": "attachment; filename=" + image
     });
-    return select;
-}
+    fs.createReadStream(path.join(__dirname, 'phones/', image)).pipe(response);
+});
+module.exports = {
+    router,
+    selectImages: select
+};

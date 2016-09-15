@@ -1,4 +1,7 @@
 'use strict';
+
+var router = require('express').Router();
+var selectImages = require('./imgSelector').selectImages;
 class User {
     constructor(id, fName, lName, age, sex) {
         this.id = id;
@@ -23,57 +26,58 @@ function generateID() {
     });
     return (maxID + 1);
 }
-module.exports = function(app, selectImages) {
-    app.get('/users', function(request, response) {
-        setTimeout(() => {
-            response.send(users);
-        }, 1000);
-    });
+
+router.get('/', function(request, response) {
+    setTimeout(() => {
+        response.send(users);
+    }, 1000);
+});
 
 
-    app.get('/users/:id', function(request, response) {
-        let found = users.findIndex(user => user.id == request.params.id);
-        setTimeout(() => {
-            var user = users[found];
-            if (user) {
-                try {
-                    user.images = selectImages(5);
-                } catch (e) {}
-            }
-            response.send(user);
-            console.log('send user ' + request.params.id);
-        }, 1000);
-    });
-
-    app.post('/users', function(request, response) {
-        let user = request.body;
-        user.id = generateID();
-        users.push(user);
-        setTimeout(() => {
-            response.send({
-                id: user.id
-            });
-        }, 1000);
-    });
-
-    app.put('/users', function(request, response) {
-        let editedUser = request.body;
-        let found = users.find(user => user.id == editedUser.id);
-        if (found) {
-            Object.assign(found, editedUser);
+router.get('/:id', function(request, response) {
+    let found = users.findIndex(user => user.id == request.params.id);
+    setTimeout(() => {
+        var user = users[found];
+        if (user) {
+            try {
+                user.images = selectImages(3);
+            } catch (e) {}
         }
+        response.send(user);
+        console.log('send user ' + request.params.id);
+    }, 1000);
+});
+
+router.post('/', function(request, response) {
+    let user = request.body;
+    user.id = generateID();
+    users.push(user);
+    setTimeout(() => {
+        response.send({
+            id: user.id
+        });
+    }, 1000);
+});
+
+router.put('/', function(request, response) {
+    let editedUser = request.body;
+    let found = users.find(user => user.id == editedUser.id);
+    if (found) {
+        Object.assign(found, editedUser);
+    }
+    response.end();
+});
+
+router.delete('/:id', function(request, response) {
+    if (request.params.id == 10) {
+        response.status(500).send('cant delete user with id 10');
+        return;
+    }
+    let found = users.findIndex(user => user.id == request.params.id);
+    users.splice(found, 1);
+    setTimeout(() => {
         response.end();
-    });
+    }, 1000);
+});
 
-    app.delete('/users/:id', function(request, response) {
-        if (request.params.id == 10) {
-            response.status(500).send('cant delete user with id 10');
-            return;
-        }
-        let found = users.findIndex(user => user.id == request.params.id);
-        users.splice(found, 1);
-        setTimeout(() => {
-            response.end();
-        }, 1000);
-    });
-}
+module.exports = router

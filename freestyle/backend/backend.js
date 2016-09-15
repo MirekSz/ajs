@@ -5,6 +5,8 @@ let app = express();
 let bodyParser = require('body-parser');
 let cors = require('cors');
 let fs = require('fs');
+var users = require('./users')
+var phones = require('./imgSelector').router;
 
 app.listen(3100, function() {
     console.log('listening on 3100');
@@ -21,5 +23,6 @@ app.use(function(req, res, next) {
     res.header('Content-Type', 'application/json');
     next();
 });
-var selectImages = require('./imgSelector')(app);
-require('./users')(app, selectImages);
+app.use('/users', users);
+app.use('/phones', phones);
+// var selectImages = require('./imgSelector')(app);

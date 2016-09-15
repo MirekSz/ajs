@@ -1,8 +1,11 @@
 'use strict';
 
 let express = require('express');
+let app = express();
 let bodyParser = require('body-parser');
 let cors = require('cors');
+let fs = require('fs');
+let selectImages = require('./imgSelector')(app);
 
 class User {
     constructor(id, fName, lName, age, sex) {
@@ -14,7 +17,7 @@ class User {
     }
 }
 
-let app = express();
+
 app.listen(3100, function() {
     console.log('listening on 3100');
 });
@@ -56,7 +59,13 @@ app.get('/users', function(request, response) {
 app.get('/users/:id', function(request, response) {
     let found = users.findIndex(user => user.id == request.params.id);
     setTimeout(() => {
-        response.send(users[found]);
+        var user = users[found];
+        if (user) {
+            try {
+                user.images = selectImages(5);
+            } catch (e) {}
+        }
+        response.send(user);
         console.log('send user ' + request.params.id);
     }, 1000);
 });

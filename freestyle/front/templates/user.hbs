@@ -18,5 +18,11 @@
               <option value="Mężczyzna" {{isSelected sex 'Mężczyzna'}}>M</option>
               <option value="Kobieta"  {{isSelected sex 'Kobieta'}}>K</option>
   </select>
+  <br/>
+    <div class="row">
+  {{#images}}
+    <img src="{{this}}" class="col-xs-4"/>
+  {{/images}}
+</div>
     </div>
 </div>

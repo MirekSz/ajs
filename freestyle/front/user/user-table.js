@@ -5,6 +5,22 @@ $(document).ready(function() {
     });
 
     loadUsers();
+    // $("table thead tr th").each(function(index, element) {
+    //     $(element).html("<a href='#'><span class='glyphicon'></span>" + $(element).html() + "</a>");
+    // })
+
+    $("table thead tr th").click(function(event) {
+        var th = $(event.target);
+        var span = th.find('span');
+        var clazz = span.attr('class');
+        if (clazz.indexOf('glyphicon glyphicon-sort-by-attributes-alt') != -1) {
+            span.removeAttr('class');
+            span.attr('class', 'glyphicon glyphicon-sort-by-attributes');
+        } else {
+            span.removeAttr('class');
+            span.attr('class', 'glyphicon glyphicon-sort-by-attributes-alt');
+        }
+    })
 });
 
 

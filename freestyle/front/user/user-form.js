@@ -37,10 +37,6 @@ function show(id) {
             $('#myModal').modal({})
         })
     })
-
-    setTimeout(() => {
-        // req.abort();
-    }, 100)
 }
 
 function addUser() {

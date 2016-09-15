@@ -82,6 +82,10 @@ app.put('/users', function(request, response) {
 });
 
 app.delete('/users/:id', function(request, response) {
+    if (request.params.id == 10) {
+        response.status(500).send('cant delete user with id 10');
+        return;
+    }
     let found = users.findIndex(user => user.id == request.params.id);
     users.splice(found, 1);
     setTimeout(() => {

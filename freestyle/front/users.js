@@ -20,12 +20,9 @@ $(document).ready(function() {
             $('#myModal').modal({});
         });
     })
-
-
     $("table tr").click(function(event) {
         $(event.currentTarget).remove()
     })
-
     $(".container").animate({
         opacity: 1,
         height: "toggle"
@@ -83,22 +80,20 @@ function loadUsers() {
     $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users"
-    }).done(function(data) {
+    }).done(function(users) {
 
-        loadTemplate('user-row').then(function(row) {
-            for (i = 0; i < data.length; i++) {
-                var user = data[i];
-
-                $("table").append(row(user));
-            }
+        loadTemplate('user-rows').then(function(rows) {
+            $("table tbody").append(rows({
+                users: users
+            }));
         })
     });
 }
 
-function loadTemplate(name, callback) {
+function loadTemplate(name) {
     return $.ajax({
         type: 'GET',
-        url: "partials/" + name + ".html"
+        url: "templates/" + name + ".hbs"
     }).promise().then(function(data) {
         return Handlebars.compile(data);
     });
@@ -114,7 +109,6 @@ function show(id) {
     }).done(function(user) {
         loadTemplate('user').then(function(userTemplate) {
             $("#myModal .modal-body").html(userTemplate(user));
-
             $('#myModal').modal({})
         })
     })

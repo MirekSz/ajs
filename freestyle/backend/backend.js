@@ -57,7 +57,7 @@ app.get('/users/:id', function(request, response) {
     let found = users.findIndex(user => user.id == request.params.id);
     setTimeout(() => {
         response.send(users[found]);
-        console.log('send');
+        console.log('send user ' + request.params.id);
     }, 1000);
 });
 

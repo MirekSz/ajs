@@ -1,0 +1,21 @@
+  <section class="au-animate">
+        <h2>Users</h2>
+        <div class="row au-stagger">
+            <div class="">
+                {{#each users}}
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">{{login}}</div>
+                        <div class="panel-body">
+                            <img src="{{avatar_url}}" width="100%" height="100%" crossorigin ref="image"/>
+
+                        </div>
+                        <div class="panel-footer">
+                            <p><a target="_blank" class="btn btn-primary" href="{{html_url}}">Contact</a></p>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>

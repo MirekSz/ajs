@@ -1,0 +1,12 @@
+@import "../common";
+
+.important tr td {
+  &:extend(.optimistic);
+  font-weight: bold;
+}
+
+:global {
+  .fancy {
+    background-color: lightcyan;
+  }
+}

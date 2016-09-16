@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "classic"
+  },
+  "exclude": [
+    "node_modules",
+    "config",
+    "dev_server.js"
+  ]
+}

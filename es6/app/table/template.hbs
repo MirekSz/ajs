@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-striped {{styles.important}} fancy table-hover">
+            <tr>
+                {{#each columns}}
+                    <th>{{this}}</th>
+                {{/each}}
+            </tr>
+
+            {{#each rows}}
+                <tr data-id="{{this.id}}">
+                    {{#each this}}
+                        <td>{{this}} </td>
+                    {{/each}}
+                </tr>
+            {{/each}}
+
+        </table>
+    </div>
+</div>

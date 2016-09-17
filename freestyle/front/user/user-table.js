@@ -119,7 +119,6 @@ function remove(id) {
         $.ajax({
             type: 'DELETE',
             url: "http://localhost:3100/users/" + id,
-            dataType: 'html'
         }).done(function (user) {
             loadUsers();
         });

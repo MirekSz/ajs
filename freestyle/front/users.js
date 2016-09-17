@@ -102,7 +102,7 @@ function loadTemplate(name) {
     // })
 }
 
-function show(id) {
+function show(id,e) {
     var req = $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users/" + id

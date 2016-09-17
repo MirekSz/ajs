@@ -11,8 +11,13 @@ $(document).ready(function () {
             return o;
         }, {});
 
+var method = 'POST'
+if(s.id){
+  method='PUT';
+}
+
         $.ajax({
-            type: 'POST',
+            type: method,
             data: JSON.stringify(s),
             contentType: 'application/json',
             url: "http://localhost:3100/users"
@@ -21,9 +26,7 @@ $(document).ready(function () {
             $('form button').prop('disabled', false);
             loadUsers();
         });
-
     });
-
 });
 
 function show(id) {

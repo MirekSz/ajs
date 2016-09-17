@@ -66,7 +66,7 @@ router.put('/', function (request, response) {
     if (found) {
         Object.assign(found, editedUser);
     }
-    response.end();
+    response.send(editedUser);
 });
 
 router.delete('/:id', function (request, response) {
@@ -75,11 +75,12 @@ router.delete('/:id', function (request, response) {
         return;
     }
     let found = users.findIndex(user => user.id == request.params.id);
+    var toDelete = users[found]
     users.splice(found, 1);
 
 
     setTimeout(() => {
-        response.end();
+        response.send(toDelete);
     }, delay);
 });
 

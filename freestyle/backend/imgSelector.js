@@ -41,6 +41,9 @@ function select(howMany) {
 router.get('/:name', function(request, response) {
     var image = request.params.name
     response.writeHead(200, {
+        "Pragma": "public",
+        "Cache-Control": "max-age=86400",
+        "Expires": new Date(Date.now() + 86400000).toUTCString(),
         "Content-Type": "application/octet-stream",
         "Content-Disposition": "attachment; filename=" + image
     });

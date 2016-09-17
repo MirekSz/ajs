@@ -17,5 +17,4 @@ export function showTable(target) {
     setTimeout(function () {
         tableModel.addRow({id: 12, name: 'Mirek', age: 25})
     }, 2000)
-
 }

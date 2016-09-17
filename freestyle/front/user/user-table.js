@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-    Handlebars.registerHelper('isSelected', function(input, color) {
+    Handlebars.registerHelper('isSelected', function (input, color) {
         return input === color ? 'selected' : '';
     });
 
@@ -9,7 +9,7 @@ $(document).ready(function() {
     //     $(element).html("<a href='#'><span class='glyphicon'></span>" + $(element).html() + "</a>");
     // })
 
-    $("table thead tr th").click(function(event) {
+    $("table thead tr th").click(function (event) {
         var th = $(event.target);
         var span = th.find('span');
         var clazz = span.attr('class');
@@ -20,7 +20,8 @@ $(document).ready(function() {
             span.removeAttr('class');
             span.attr('class', 'glyphicon glyphicon-sort-by-attributes-alt');
         }
-    })
+    });
+
 });
 
 
@@ -30,12 +31,12 @@ function loadUsers() {
     $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users"
-    }).done(function(users) {
-        loadTemplate('user-rows').then(function(rows) {
+    }).done(function (users) {
+        loadTemplate('user-rows').then(function (rows) {
             $("table tbody").append(rows({
                 users: users
             }));
-            $("table tbody tr").click(function(event) {
+            $("table tbody tr").click(function (event) {
                 if (!event.ctrlKey) {
                     $("table tbody tr").removeClass('active-row');
                 }
@@ -62,13 +63,13 @@ function showDetails(id) {
     if (currentRequest) {
         currentRequest.abort();
     }
-    prefetch(id)
+//    prefetch(id)
     currentRequest = $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users/" + id,
-    }).done(function(user) {
-        loadTemplate('user').then(function(userTemplate) {
-            let html = userTemplate(user);;
+    }).done(function (user) {
+        loadTemplate('user').then(function (userTemplate) {
+            let html = userTemplate(user);
             $("#workspace").html(html);
 
             animateDetails();
@@ -81,8 +82,8 @@ function prefetch(id) {
     $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users/" + (Number.parseInt(id) + 1),
-    }).done(function(user) {
-        loadTemplate('user').then(function(userTemplate) {
+    }).done(function (user) {
+        loadTemplate('user').then(function (userTemplate) {
             nextDetails = userTemplate(user);
         });
     });
@@ -92,12 +93,14 @@ function animateDetails() {
     $("#workspace").animate({
         opacity: 1,
         width: "hide"
-    }, 'fast', function() {});
+    }, 'fast', function () {
+    });
 
     $("#workspace").animate({
         opacity: 1,
         width: "toggle"
-    }, 500, function() {});
+    }, 500, function () {
+    });
 }
 
 function remove(id) {
@@ -109,12 +112,12 @@ function remove(id) {
         confirmButtonColor: "#DD6B55",
         confirmButtonText: "Yes, delete it!",
         closeOnConfirm: true
-    }, function() {
+    }, function () {
         $.ajax({
             type: 'DELETE',
             url: "http://localhost:3100/users/" + id,
             dataType: 'html'
-        }).done(function(user) {
+        }).done(function (user) {
             loadUsers();
         });
     });
@@ -124,7 +127,7 @@ function loadTemplate(name) {
     return $.ajax({
         type: 'GET',
         url: "templates/" + name + ".hbs"
-    }).promise().then(function(data) {
+    }).promise().then(function (data) {
         return Handlebars.compile(data);
     });
 }

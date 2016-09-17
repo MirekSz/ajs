@@ -1,5 +1,5 @@
 'use strict';
-
+const delay = 1000;
 var router = require('express').Router();
 var selectImages = require('./imgSelector').selectImages;
 class User {
@@ -27,28 +27,29 @@ function generateID() {
     return (maxID + 1);
 }
 
-router.get('/', function(request, response) {
+router.get('/', function (request, response) {
     setTimeout(() => {
         response.send(users);
-    }, 1000);
+    }, delay);
 });
 
 
-router.get('/:id', function(request, response) {
+router.get('/:id', function (request, response) {
     let found = users.findIndex(user => user.id == request.params.id);
     setTimeout(() => {
         var user = users[found];
-        if (user) {
+        if (user && !user.images) {
             try {
                 user.images = selectImages(3);
-            } catch (e) {}
+            } catch (e) {
+            }
         }
         response.send(user);
         console.log('send user ' + request.params.id);
-    }, 1000);
+    }, delay);
 });
 
-router.post('/', function(request, response) {
+router.post('/', function (request, response) {
     let user = request.body;
     user.id = generateID();
     users.push(user);
@@ -56,10 +57,10 @@ router.post('/', function(request, response) {
         response.send({
             id: user.id
         });
-    }, 1000);
+    }, delay);
 });
 
-router.put('/', function(request, response) {
+router.put('/', function (request, response) {
     let editedUser = request.body;
     let found = users.find(user => user.id == editedUser.id);
     if (found) {
@@ -68,16 +69,18 @@ router.put('/', function(request, response) {
     response.end();
 });
 
-router.delete('/:id', function(request, response) {
+router.delete('/:id', function (request, response) {
     if (request.params.id == 10) {
         response.status(500).send('cant delete user with id 10');
         return;
     }
     let found = users.findIndex(user => user.id == request.params.id);
     users.splice(found, 1);
+
+
     setTimeout(() => {
         response.end();
-    }, 1000);
+    }, delay);
 });
 
 module.exports = router

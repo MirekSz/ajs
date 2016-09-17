@@ -64,6 +64,7 @@ function showDetails(id) {
         currentRequest.abort();
     }
 //    prefetch(id)
+    animateHideDetails();
     currentRequest = $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users/" + id,
@@ -72,7 +73,7 @@ function showDetails(id) {
             let html = userTemplate(user);
             $("#workspace").html(html);
 
-            animateDetails();
+            animateShowDetails();
 
         });
     });
@@ -89,15 +90,17 @@ function prefetch(id) {
     });
 }
 
-function animateDetails() {
+function animateHideDetails() {
     $("#workspace").animate({
-        opacity: 1,
         width: "hide"
-    }, 'fast', function () {
+    }, 500, function () {
     });
 
+}
+
+
+function animateShowDetails() {
     $("#workspace").animate({
-        opacity: 1,
         width: "toggle"
     }, 500, function () {
     });

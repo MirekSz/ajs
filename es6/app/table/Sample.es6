@@ -14,12 +14,13 @@ export async function showTable(target) {
     tableComponent.bindWithModel(tableModel);
 
     tableComponent.renderTo(target);
-    var users = await request.get('https://api.github.com/users');
+    var users = await request.get('http://localhost:3100/users');
 
-    for (let user of users.body){
-        let userDetails = await request.get('https://api.github.com/users/'+user.id);
-        console.log(userDetails.body.avatar_url)
-        $("body").append('<img class="col-xs-1" src="'+userDetails.body.avatar_url+'"></img>')
+    for (let user of users.body) {
+        let userDetails = await request.get('http://localhost:3100/users/' + user.id);
+        for (let image of userDetails.body.images) {
+            $("body").append('<img class="col-xs-1" src="' + image + '"></img>')
+        }
     }
     setTimeout(function () {
         tableModel.addRow({id: 12, name: 'Mirek', age: 25})

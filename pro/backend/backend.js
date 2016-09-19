@@ -10,7 +10,6 @@ var users = require('./users')
 var phones = require('./imgSelector').router;
 var swaggerJSDoc = require('swagger-jsdoc');
 
-
 app.listen(3100, function() {
     console.log('listening on 3100');
 });

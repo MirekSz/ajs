@@ -3,7 +3,8 @@
 3.Handlebars
 4. Ajax loader
 5. Details
-6. Anination
+6.5 Detail table col-xs-6
+6. Animation
 7. Images
 8. Modal
 9. AddUser

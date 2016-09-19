@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Just-in-Time Help</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        .help {
+            position: absolute;
+            left: 300px;
+            top: 20px;
+            visibility: hidden;
+            width: 100px;
+            padding: 10px;
+            border: 1px solid #ff0000;
+        }
+
+        form {
+            margin: 20px;
+            background-color: #dfe1cb;
+            padding: 20px;
+            width: 200px;
+        }
+
+        label {
+            cursor: help
+        }
+    </style>
+    <script type="text/javascript">
+        //<![CDATA[
+        window.onload = function() {
+            var labels = document.getElementsByTagName("label");
+            for (var i = 0; i < labels.length; i++)
+                labels[i].onclick = showHelp;
+        }
+
+        function showHelp(evnt) {
+            var theEvent = evnt ? evnt : window.event;
+            var theSrc = theEvent.target ? theEvent.target : theEvent.srcElement;
+            // hide all first
+            var item1 = document.getElementById("item1");
+            var item2 = document.getElementById("item2");
+            // selectively show right help
+            item1.style.visibility = "hidden";
+            item2.style.visibility = "hidden";
+            if (theSrc.id == "label1")
+                item1.style.visibility = "visible";
+            else
+                item2.style.visibility = "visible";
+        }
+        //]]>
+    </script>
+</head>
+
+<body>
+    <form action="">
+        <p>
+            <label id="label1">Item One</label>
+            <input type="text" /><br /><br />
+            <label id="label2">Item Two</label>
+            <input type="text" />
+        </p>
+    </form>
+    <div id="item1" class="help">
+        <p>This is the help for the first item. It only shows when you click on the label for the item.</p>
+    </div>
+    <div id="item2" class="help">
+        <p>This is the help for the second item. It only shows when you click on the label for the item.</p>
+    </div>
+</body>
+
+</html>

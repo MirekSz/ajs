@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Google Maps Effect</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        #div1 {
+            overflow: hidden;
+            position: relative;
+            top: 100px;
+            left: 100px;
+            border: 5px solid #000;
+            width: 640px;
+            height: 480px;
+        }
+
+        img {
+            border: 1px solid #000;
+        }
+    </style>
+    <script type="text/javascript">
+        //<![CDATA[
+        // global variables
+        var dragObject = null;
+        var mouseOffset = null;
+        // capture mouse events
+        document.onmousemove = mouseMove;
+        document.onmouseup = mouseUp;
+        // create a mouse point
+        function MousePoint(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        // find mouse position
+        function mousePosition(evnt) {
+            var x = parseInt(evnt.clientX);
+            var y = parseInt(evnt.clientY);
+            return new MousePoint(x, y);
+        }
+        // get element's offset position within page
+        function getMouseOffset(target, evnt) {
+            var theEvent = evnt ? evnt : window.event;
+            var mousePos = mousePosition(theEvent);
+            var x = mousePos.x - target.offsetLeft;
+            var y = mousePos.y - target.offsetTop;
+            return new MousePoint(x, y);
+        }
+        // turn off dragging
+        function mouseUp(evnt) {
+            dragObject = null;
+        }
+        // capture mouse move, only if dragging
+        function mouseMove(evnt) {
+            if (!dragObject) return;
+            var theEvent = evnt ? evnt : window.event;
+            var mousePos = mousePosition(theEvent);
+            // if draggable, set new absolute position
+            if (dragObject) {
+                dragObject.style.position = 'relative';
+                dragObject.style.top = mousePos.y - mouseOffset.y + "px";
+                dragObject.style.left = mousePos.x - mouseOffset.x + "px";
+                return false;
+            }
+        }
+        // make object draggable
+        function makeDraggable(item) {
+            if (item) {
+                item = document.getElementById(item);
+                item.onmousedown = function(theEvent) {
+                    dragObject = this;
+                    mouseOffset = getMouseOffset(this, theEvent);
+                    return false;
+                };
+            }
+        }
+        window.onload = function() {
+                makeDraggable("img1");
+            }
+            //]]>
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        <img id="img1" src="duke.gif" alt="duke" />
+    </div>
+</body>
+
+</html>

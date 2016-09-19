@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Modul 2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+        //zadanie 1
+        function findMin(arr) {
+            var minIdx = 0,
+                minVal = arr[0]
+            for (idx in arr) {
+                if (arr[idx] < minVal) {
+                    minIdx = idx;
+                }
+            }
+            return minIdx;
+        }
+        //zadanie 2
+        function obliczPole(r) {
+            return Math.PI * Math.pow(r, 2);
+        }
+
+        function obliczObwod(r) {
+            return 2 * Math.PI * r;
+        }
+        //zadanie 3
+        function sprawdzKwote(kwota) {
+            var reKwota = /^\d+((.|,)\d{2})?\s(PLN|PLZ|EU|EUR)$/;
+            return reKwota.test(kwota);
+        }
+
+        function wymien(kwota, kurs) {
+            var reKwota = /^\d+((.|,)\d{2})?\s(EU|EUR)$/;
+            if (reKwota.test(kwota)) {
+                var nKwota = parseFloat(kwota.split(/\s/)[0]);
+                return ((nKwota * kurs).toFixed(2) + " PLN").replace(".", ",");
+            } else {
+                console.log('Nieprawidlowe dane wejsciowe');
+            }
+        }
+        //zadanie 4
+        function sprawdzKod(kod) {
+            var reKod = /^\d{2}-\d{3}$/;
+            return reKod.test(kod);
+        }
+        //zadanie 5
+        function znajdzImionaNazwiska(tekst) {
+            var reImieNazwisko = /[A-Z][a-z]+\s[A-Z][a-z]+(-[A-Z][a-z]+)?/g;
+            console.log(tekst.match(reImieNazwisko));
+        }
+        //zadanie 6
+        function szukajIdentyfikatorow(tekst) {
+            var reIdentyfikator = /[^a-z0-9_AEIOU]{2}[AEIOUY]\-[235][0-9]{2}/g;
+            console.log(tekst.match(reIdentyfikator));
+        }
+        console.log("Minimum ma indeks : " + findMin(new Array(1, 4, 0, 5, 6)));
+        console.log("Pole wynosi : " + obliczPole(3));
+        console.log("Obwod wynosi : " + obliczObwod(3));
+        console.log(sprawdzKwote('100,33 PLN'));
+        console.log(wymien("100.22 EU", 2.4));
+        console.log("Kod poprawny : " + sprawdzKod('61-102'));
+        znajdzImionaNazwiska('Adam Mowert,Filip moden,Marek Guziel-Nogay,Zuza Mogecka,HubertJot,Vitek');
+        szukajIdentyfikatorow('Stan magazynu:AWA-344,PLA-345,KLA-345')
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

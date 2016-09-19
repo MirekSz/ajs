@@ -1,0 +1,83 @@
+<html>
+
+<head>
+
+    <title></title>
+    <style>
+        label {
+            width: 300px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <p><label>Imie <input type="text" class="required" /><span></span></label></p>
+        <p><label>Nazwisko <input type="text" class="required" /><span></span></label></p>
+        <p><label>Login <input type="text" class="required" /><span></span></label></p>
+        <p><label>Hasło <input type="text" class="pass" /><span></span></label></p>
+        <p><label>Email <input type="text" class="email" /><span></span></label></p>
+        <p><input type="submit" /></p>
+    </form>
+
+    <script type="text/javascript">
+        function waliduj(e) {
+            var clasa = this.className;
+            var errorTxt = '';
+            var tekst = this.value;
+            switch (clasa) {
+                case ("pass"):
+                    if (tekst.length < 6) {
+                        errorTxt = "Hasło powinno zawierać minimum 6 znaków";
+                    }
+                    break;
+                case ("email"):
+                    if (!tekst.match("@")) {
+                        errorTxt = "Adres e-mail musi zaweirać małpe";
+                    }
+                    break;
+                case ("required"):
+                    if (tekst == '') {
+                        errorTxt = "Pole jest wymagane";
+                    }
+                    break;
+            }
+            var x = this.parentNode.getElementsByTagName("span")[0];
+            if (x) {
+                var old = this.parentNode.removeChild(x);
+            }
+            if (errorTxt) {
+                var x = document.createElement("span");
+                var y = document.createTextNode(errorTxt);
+                x.appendChild(y);
+                this.parentNode.appendChild(x);
+                this.parentNode.className = "error";
+            } else {
+                this.parentNode.className = "";
+            }
+        }
+
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0, j = inputs.length; i < j; i++) {
+            inputs[i].addEventListener("blur", waliduj, true);
+        }
+
+        var elForm = document.getElementsByTagName("form")[0];
+        elForm.addEventListener("submit", function(e) {
+            var elL = document.getElementsByTagName("label");
+            for (var i = 0, j = elL.length; i < j; i++) {
+                if (elL[i].className == "error") {
+                    e.preventDefault();
+                    break;
+                }
+            }
+
+        }, true)
+    </script>
+</body>
+
+</html>

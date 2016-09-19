@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Modul 3</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+      .errorText {
+        color : red;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="userForm" action="ok.html">
+    <table>
+      <thead align="center">
+        <tr>Formularz rejestracyjny</tr>
+      </thead>
+      <tr>
+        <td><span id="sImie">Imie:</span></td>
+        <td><input id="imie" type="text"></td>
+        <td><span id="bImie" class="errorText"></span></td>
+      </tr>
+      <tr>
+        <td>Nazwisko:</td>
+        <td><input id="nazwisko" type="text"></td>
+      </tr>
+      <tr>
+        <td>Login:</td>
+        <td><input id="login" type="text"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input id="password" type="password"></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input id="email" type="text"></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="ok"/></td>
+      </tr>
+    </table>
+    </form>
+    <script type="text/javascript">  
+    function emptyValidator(text) {
+      if (text!="") {
+        return true;
+      } else {
+        return false;
+      }
+    }  
+    function getImieValue() {
+      var imieNode = document.getElementById("imie");
+      return imieNode.value;
+    }
+    
+    function imieValidator(){
+      var valid = false;
+      var val = getImieValue();
+      var sImie = document.getElementById("sImie"); 
+      var bImie = document.getElementById("bImie");
+      if (!emptyValidator(val)) {
+        sImie.style.color="red";
+        var textNode = document.createTextNode("Imie jest wymagane !");
+        var childrens = bImie.childNodes;
+        if (childrens.length == 0) {
+          bImie.appendChild(textNode);
+        }
+        valid = false;
+      } else {
+        sImie.style.color="black";
+        var textNode = bImie.childNodes[0];
+        if (textNode!=null) {
+          bImie.removeChild(textNode);
+        }
+        valid = true;
+      }
+      return valid;
+    }
+    document.getElementById("imie").onblur = imieValidator;
+    
+    function submitHandler() {
+      if (imieValidator()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    document.getElementById("userForm").onsubmit = submitHandler; 
+    setTimeout("document.getElementById('imie').focus();",50);
+    
+    </script>    
+  </body>
+</html>

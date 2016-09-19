@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Modul 1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+        //zadanie 1
+        var wynik = "";
+        var iZakres = 6;
+        for (var i = 1; i <= iZakres; i++) {
+            for (var j = 1; j <= i; j++) {
+                wynik += j;
+            }
+            wynik += "\n";
+        }
+        console.log(wynik);
+
+        //zadanie 2
+        var podstawaPotegi = 2;
+        var maksymalnyWykladnik = 8;
+        wynik = "Potega | Wartosc dec | Wartosc oct\n";
+        for (var i = 0; i <= maksymalnyWykladnik; i++) {
+            var wynikPotegowania = 1;
+            for (var j = 0; j < i; j++) {
+                wynikPotegowania *= podstawaPotegi;
+            }
+            wynik += i + "               " + wynikPotegowania + "                     " + wynikPotegowania.toString(8) + "\n";
+        }
+        console.log(wynik);
+
+        //zadanie 3
+        wynik = "";
+        prime:
+            for (var i = 1; i <= 100; i++) {
+                if ((i == 1) || (!(i % 2 != 0) && (i != 2))) {
+                    continue prime;
+                }
+                for (var p = 2; p < i; p++) {
+                    if (i % p == 0) {
+                        continue prime;
+                    }
+                }
+                wynik += i + " ";
+            }
+        console.log(wynik);
+
+        //zadanie 4
+        wynik = "";
+        var zakres = 100;
+        var i = 0,
+            j = 1;
+        do {
+            var sum = i + j;
+            if (sum > zakres)
+                break;
+            wynik += sum + " ";
+            i = j;
+            j = sum;
+        } while (true)
+        console.log(wynik);
+
+        //zadanie 5
+        wynik = "";
+        var c7 = 0;
+        var c13 = 0;
+        var c29 = 0;
+        var c43 = 0;
+        for (var i = 1234; i <= 2345; i++) {
+            if (i % 7 == 0) {
+                c7++;
+            }
+            if (i % 13 == 0) {
+                c13++;
+            }
+            if (i % 29 == 0) {
+                c29++;
+            }
+            if (i % 43 == 0) {
+                c43++;
+            }
+        }
+        console.log(" 7: " + c7 + "\n13: " + c13 + "\n29: " + c29 + "\n43: " + c43);
+
+        //zadanie 6
+        function kalkulator(x, y, dzialanie) {
+            switch (dzialanie) {
+                case "+":
+                    console.log(x + y);
+                    break;
+                case "-":
+                    console.log(x - y);
+                    break;
+                case "*":
+                    console.log(x * y);
+                    break;
+                case "/":
+                    console.log(x / y);
+                    break;
+                case "%":
+                    console.log(x % y);
+                    break;
+                default:
+                    console.log("Nieznana komenda !");
+            }
+        }
+        kalkulator(1, 2.3, "+");
+        kalkulator(1, 2.3, "a");
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

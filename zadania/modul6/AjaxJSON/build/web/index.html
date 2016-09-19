@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>City lookup</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css">
+            div.elem
+            {
+                margin: 20px;
+            }
+            div#cities
+            {
+                display: none;
+            }
+        </style>
+        <script type="text/javascript">
+            //<![CDATA[
+            // global variables
+            var xmlHttpObj;
+            function catchEvent(eventObj, event, eventHandler) {
+                if (eventObj.addEventListener) {
+                    eventObj.addEventListener(event, eventHandler,false);
+                } else if (eventObj.attachEvent) {
+                    event = "on" + event;
+                    eventObj.attachEvent(event, eventHandler);
+                }
+            }
+            catchEvent(window,"load", function() {
+                document.getElementById("cities").style.display="block";
+                document.getElementById("submitButton").style.display="none";
+                document.getElementById("stateList").onchange=populateList;
+            });
+            function getXmlHttp() {
+                var xmlhttp = null;
+                if (window.XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    try
+                    {
+                        xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+                    }
+                    catch (e) {
+                        try
+                        {
+                            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        catch (e) {
+                            return null;
+                        }
+                    }
+                }
+                return xmlhttp;
+            }
+            function populateList() {
+                var state = encodeURIComponent(document.getElementById("stateList").value);
+                var url = 'getCities?state=' + state;
+                // if xmlHttpObj not set
+                if (!xmlHttpObj)
+                    xmlHttpObj = getXmlHttp();
+                if (!xmlHttpObj) return;
+                xmlHttpObj.open('GET', url, true);
+                xmlHttpObj.onreadystatechange = getCities;
+                xmlHttpObj.send(null);
+            }
+            // process JSON formatted city list
+            function getCities() {
+                if(xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200) {
+                    try {
+                        // evaluate JSON
+                        eval("var response = ("+ xmlHttpObj.responseText+")");
+                        var citySelection = document.getElementById("citySelection");
+                        var name = value = null;
+                        // process returned data from JSON object
+                        for (var i = 0; i < response.length; i++) {
+                            name = response[i].title;
+                            value = response[i].value;
+                            citySelection.options[i] = new Option(name,value);
+                        }
+                    } catch (e) {
+                        alert(e.message);
+                    }
+                } else if (xmlHttpObj.readyState == 4 && xmlHttpObj.status != 200) {
+                    document.getElementById('cities').innerHTML = 'Error: No Cities!';
+                }
+            }
+            //]]>
+        </script>
+    </head>
+    <body>
+        <h3>Select State:</h3>
+        <form action="getCities" method="get">
+            <div class="elem">
+                <select id="stateList" name="state">
+                    <option value="CA">California</option>
+                    <option value="MO">Missouri</option>
+                    <option value="WA">Washington</option>
+                    <option value="ID">Idaho</option>
+                </select>
+            </div>
+            <h3>Cities:</h3>
+            <div class="elem" id="cities">
+                <select id="citySelection">
+                    <option> </option>
+                </select>
+            </div>
+            <p>
+                <input type="submit" value="Lookup" id="submitButton" />
+            </p>
+        </form>
+    </body>
+</html>

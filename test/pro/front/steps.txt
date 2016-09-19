@@ -1,0 +1,10 @@
+1.Selector dodawanie/usuwanie
+2. ajax
+3.Handlebars
+4. Ajax loader
+5. Details
+6. Anination
+7. Images
+8. Modal
+9. AddUser
+10. Walidation

@@ -1,0 +1,29 @@
+.modal-header {
+    padding: 9px 15px;
+    border-bottom: 1px solid #d0d0d0;
+    background-color: #d0d0d0;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+table > tbody > tr.active-row > td {
+    background-color: #e6eeff;
+}
+
+table > tbody > tr:hover > td {
+    cursor: pointer;
+}
+
+/*.rotate {*/
+    /*transform: rotate(180deg);*/
+    /*transition: all 0.5s;*/
+/*}*/
+
+/*.rotate.in {*/
+    /*transform: rotate(360deg);*/
+    /*transition: all 1.5s;*/
+/*}*/

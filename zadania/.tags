@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+author	.\modul8\backend\package.json	/^  "author": "",$/;"	f
+body-parser	.\modul8\backend\package.json	/^    "body-parser": "^1.15.2",$/;"	f
+cors	.\modul8\backend\package.json	/^    "cors": "^2.8.1",$/;"	f
+description	.\modul8\backend\package.json	/^  "description": "Fourht interation",$/;"	f
+devDependencies	.\modul8\backend\package.json	/^  "devDependencies": {$/;"	f
+express	.\modul8\backend\package.json	/^    "express": "^4.14.0"$/;"	f
+generateID	.\modul8\backend\backend.js	/^function generateID() {$/;"	f
+license	.\modul8\backend\package.json	/^  "license": "ISC",$/;"	f
+loadTemplate	.\modul8\front\users.js	/^function loadTemplate(name, callback) {$/;"	f
+main	.\modul8\backend\package.json	/^  "main": "index.js",$/;"	f
+name	.\modul8\backend\package.json	/^  "name": "backend",$/;"	f
+scripts	.\modul8\backend\package.json	/^  "scripts": {$/;"	f
+show	.\modul8\front\users.js	/^function show(id) {$/;"	f
+start	.\modul8\backend\package.json	/^    "start": "node backend.js"$/;"	f
+version	.\modul8\backend\package.json	/^  "version": "1.0.0",$/;"	f

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Modul 3</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+        //zadanie 1
+        var optionString = prompt("Podaj opcje rozdzielone przecinkiem :", "");
+        optionString = optionString ? optionString : "";
+        window.open("http://www.altkom.pl", "test", optionString);
+        //zadanie 2
+        document.writeln("<h1>screen object</h1><p>");
+        document.writeln("screen.availTop: " + screen.availTop + "<br />");
+        document.writeln("screen.availLeft: " + screen.availLeft + "<br />");
+        document.writeln("screen.availWidth: " + screen.availWidth + "<br />");
+        document.writeln("screen.availHeight: " + screen.availHeight + "<br />");
+        document.writeln("screen.colorDepth: " + screen.colorDepth + "<br />");
+        document.writeln("screen.pixelDepth: " + screen.pixelDepth + "<br /></p>");
+        document.writeln("<h1>navigator object</h1><p>");
+        document.writeln("navigator.userAgent: " + navigator.userAgent + "<br />");
+        document.writeln("navigator.appName: " + navigator.appName + "<br />");
+        document.writeln("navigator.appCodeName: " + navigator.appCodeName + "<br />");
+        document.writeln("navigator.appVersion: " + navigator.appVersion + "<br />");
+        document.writeln("navigator.appMinorVersion: " + navigator.appMinorVersion + "<br/>");
+        document.writeln("navigator.platform: " + navigator.platform + "<br />");
+        document.writeln("navigator.cookieEnabled: " + navigator.cookieEnabled + "<br />");
+        document.writeln("navigator.onLine: " + navigator.onLine + "<br />");
+        document.writeln("navigator.userLanguage: " + navigator.userLanguage + "<br />");
+        //Zadanie 3
+        var current = 0;
+        window.onload = function() {
+            document.getElementById("next").onclick = next;
+            document.getElementById("prev").onclick = prev;
+        }
+
+        function change(photo) {
+            document.images[0].src = "images/" + (photo + 1) + ".png"
+        }
+
+        function next() {
+            current++;
+            if (current < 4) {
+                change(current);
+            } else {
+                alert("Jestes na koncu listy obrazow");
+            }
+        }
+
+        function prev() {
+            if (current > 0) {
+                current--;
+                change(current);
+            } else {
+                alert("Jestes na poczatku listy obrazow");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="next">Nastepny</div>
+    <div id="prev">Poprzedni</div>
+    <img src="images/1.png" />
+</body>
+
+</html>

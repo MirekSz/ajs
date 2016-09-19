@@ -1,0 +1,16 @@
+{
+  "ecmaVersion": 7,
+  "libs": [
+    "browser",
+    "jquery"
+  ],
+  "plugins": {
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": false
+    },
+    "complete_strings": {
+      "maxLength": 15
+    }
+  }
+}

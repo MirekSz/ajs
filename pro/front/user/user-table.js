@@ -5,10 +5,10 @@ $(document).ready(function () {
     });
 
     loadUsers();
+
     // $("table thead tr th").each(function(index, element) {
     //     $(element).html("<a href='#'><span class='glyphicon'></span>" + $(element).html() + "</a>");
     // })
-
     $("table thead tr th").click(function (event) {
         var th = $(event.target);
         var span = th.find('span');
@@ -49,6 +49,7 @@ function loadUsers() {
         })
     });
 }
+
 var currentRequest;
 var nextDetails;
 
@@ -64,6 +65,7 @@ function showDetails(id) {
         currentRequest.abort();
     }
 //    prefetch(id)
+
     animateHideDetails();
     currentRequest = $.ajax({
         type: 'GET',
@@ -72,7 +74,7 @@ function showDetails(id) {
         loadTemplate('user').then(function (userTemplate) {
             let html = userTemplate(user);
             $("#workspace").html(html);
-
+$("#workspace input,select").attr('readonly','true')
             animateShowDetails();
 
         });

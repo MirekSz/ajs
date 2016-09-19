@@ -1,0 +1,6 @@
+'atom-workspace':
+  'ctrl-q': 'goto-last-edit:back'
+  'ctrl-alt-v': 'extract-selection:as-let'
+  'f3': 'goto-definition:go'
+'atom-text-editor[data-grammar="text html basic"]:not([mini])':
+    'tab': 'emmet:expand-abbreviation-with-tab'

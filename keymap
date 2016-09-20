@@ -3,4 +3,8 @@
   'ctrl-alt-v': 'extract-selection:as-let'
   'f3': 'goto-definition:go'
 'atom-text-editor[data-grammar="text html basic"]:not([mini])':
+      'tab': 'emmet:expand-abbreviation-with-tab'
+'atom-text-editor[data-grammar="text html mustache"]:not([mini])':
+    'tab': 'emmet:expand-abbreviation-with-tab'
+'atom-text-editor[data-grammar="text html handlebars"]:not([mini])':
     'tab': 'emmet:expand-abbreviation-with-tab'

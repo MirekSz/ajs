@@ -3,48 +3,48 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
     <script src="libs/jquery-2.2.4.js"></script>
     <script src="libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="libs/handlebars.js"></script>
     <script src="libs/sweet/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="libs/sweet/sweetalert.css">
     <script src='libs/nprogress/nprogress.js'></script>
-    <link rel='stylesheet' href='libs/nprogress/nprogress.css'/>
-    <link rel='stylesheet' href='style.css'/>
+    <link rel='stylesheet' href='libs/nprogress/nprogress.css' />
+    <link rel='stylesheet' href='style.css' />
     <script src="user/user-table.js" charset="utf-8"></script>
     <script src="user/user-form.js" charset="utf-8"></script>
 </head>
 
 <body>
-<br/>
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Users</h3></div>
-        <div class="panel-body">
-            <button class="btn btn-default">Add user</button>
-            <table class="table table-striped table-hover" id="users">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th sort="fName">
-                        <a href="#"> <span class="glyphicon"></span> FirstName</a>
-                    </th>
-                    <th>LastName</th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+    <br/>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users</h3></div>
+            <div class="panel-body">
+                <button class="btn btn-default">Add user</button>
+                <table class="table table-striped table-hover" id="users">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th sort="fName">
+                                <a href="#"> <span class="glyphicon"></span> FirstName</a>
+                            </th>
+                            <th>LastName</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
-</div>
-<div id="workspace" class="col-xs-8 col-xs-offset-2" style="display:none"></div>
+    </div>
+    <div id="workspace" class="col-xs-8 col-xs-offset-2" style="display:none"></div>
 </body>
 
 </html>
@@ -70,11 +70,10 @@
     </div>
 </div>
 <script>
-    $(document).ajaxStart(function () {
+    $(document).ajaxStart(function() {
         NProgress.start();
     });
-    $(document).ajaxStop(function () {
+    $(document).ajaxStop(function() {
         NProgress.done();
     });
-
 </script>

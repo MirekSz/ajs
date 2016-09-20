@@ -1,5 +1,6 @@
+0. Bootstrap table
 1.Selector dodawanie/usuwanie
-2. ajax
+2. ajax, loader spinner
 3.Handlebars
 4. Ajax loader
 5. Details
@@ -9,8 +10,8 @@
 6.8 Abort request
 6.9 Prefetch
 7. Images
-8. Modal
+8. Modal, bootstrap modal
 9. AddUser (form data)
 10. Walidation
 11. Modal animation
-12. Delete break stop details
+12. Delete break stop details, sweet alert

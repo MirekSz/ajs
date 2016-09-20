@@ -3,9 +3,14 @@
 3.Handlebars
 4. Ajax loader
 5. Details
-6.5 Detail table col-xs-6
+5.5 Active row css, pointer cursor
 6. Animation
+6.5 Detail table col-xs-6
+6.8 Abort request
+6.9 Prefetch
 7. Images
 8. Modal
-9. AddUser
+9. AddUser (form data)
 10. Walidation
+11. Modal animation
+12. Delete break stop details

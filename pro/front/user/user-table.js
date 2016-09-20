@@ -1,6 +1,6 @@
-$(document).ready(function () {
-
-    Handlebars.registerHelper('isSelected', function (input, color) {
+$(document).ready(function() {
+    //mires
+    Handlebars.registerHelper('isSelected', function(input, color) {
         return input === color ? 'selected' : '';
     });
 
@@ -9,7 +9,7 @@ $(document).ready(function () {
     // $("table thead tr th").each(function(index, element) {
     //     $(element).html("<a href='#'><span class='glyphicon'></span>" + $(element).html() + "</a>");
     // })
-    $("table thead tr th").click(function (event) {
+    $("table thead tr th").click(function(event) {
         var th = $(event.target);
         var span = th.find('span');
         var clazz = span.attr('class');
@@ -24,19 +24,18 @@ $(document).ready(function () {
 
 });
 
-
 function loadUsers() {
     $("table tbody").empty();
     $("#workspace").empty();
     $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users"
-    }).done(function (users) {
-        loadTemplate('user-rows').then(function (rows) {
+    }).done(function(users) {
+        loadTemplate('user-rows').then(function(rows) {
             $("table tbody").append(rows({
                 users: users
             }));
-            $("table tbody tr").click(function (event) {
+            $("table tbody tr").click(function(event) {
                 if (!event.ctrlKey) {
                     $("table tbody tr").removeClass('active-row');
                 }
@@ -64,17 +63,17 @@ function showDetails(id) {
     if (currentRequest) {
         currentRequest.abort();
     }
-//    prefetch(id)
+    //    prefetch(id)
 
     animateHideDetails();
     currentRequest = $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users/" + id,
-    }).done(function (user) {
-        loadTemplate('user').then(function (userTemplate) {
+    }).done(function(user) {
+        loadTemplate('user').then(function(userTemplate) {
             let html = userTemplate(user);
             $("#workspace").html(html);
-$("#workspace input,select").attr('readonly','true')
+            $("#workspace input,select").attr('readonly', 'true')
             animateShowDetails();
 
         });
@@ -85,8 +84,8 @@ function prefetch(id) {
     $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users/" + (Number.parseInt(id) + 1),
-    }).done(function (user) {
-        loadTemplate('user').then(function (userTemplate) {
+    }).done(function(user) {
+        loadTemplate('user').then(function(userTemplate) {
             nextDetails = userTemplate(user);
         });
     });
@@ -95,8 +94,7 @@ function prefetch(id) {
 function animateHideDetails() {
     $("#workspace").animate({
         width: "hide"
-    }, 500, function () {
-    });
+    }, 500, function() {});
 
 }
 
@@ -104,8 +102,7 @@ function animateHideDetails() {
 function animateShowDetails() {
     $("#workspace").animate({
         width: "toggle"
-    }, 500, function () {
-    });
+    }, 500, function() {});
 }
 
 function remove(id) {
@@ -117,11 +114,11 @@ function remove(id) {
         confirmButtonColor: "#DD6B55",
         confirmButtonText: "Yes, delete it!",
         closeOnConfirm: true
-    }, function () {
+    }, function() {
         $.ajax({
             type: 'DELETE',
             url: "http://localhost:3100/users/" + id,
-        }).done(function (user) {
+        }).done(function(user) {
             loadUsers();
         });
     });
@@ -131,7 +128,7 @@ function loadTemplate(name) {
     return $.ajax({
         type: 'GET',
         url: "templates/" + name + ".hbs"
-    }).promise().then(function (data) {
+    }).promise().then(function(data) {
         return Handlebars.compile(data);
     });
 }

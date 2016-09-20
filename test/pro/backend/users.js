@@ -15,7 +15,7 @@ class User {
 let users = [
     new User(1, 'Marzanna', 'Uss', 54, 'Kobieta'),
     new User(2, 'Julia', 'Dolej', 22, 'Kobieta'),
-    new User(3, 'Jacek', 'Doe', 43, 'Mężczyzna')
+	new User(3, 'Jacek', 'Doe', 43, 'Mężczyzna')
 ];
 
 function generateID() {
@@ -56,7 +56,7 @@ function generateID() {
  *         schema:
  *           $ref: '#/definitions/User'
  */
-router.get('/', function(request, response) {
+router.get('/', function (request, response) {
     setTimeout(() => {
         response.send(users);
     }, delay);
@@ -80,14 +80,15 @@ router.get('/', function(request, response) {
  *         schema:
  *           $ref: '#/definitions/User'
  */
-router.get('/:id', function(request, response) {
+router.get('/:id', function (request, response) {
     let found = users.findIndex(user => user.id == request.params.id);
     setTimeout(() => {
         var user = users[found];
         if (user && !user.phones) {
             try {
                 user.phones = selectImages(3);
-            } catch (e) {}
+            } catch (e) {
+            }
         }
         response.send(user);
         console.log('send user ' + request.params.id);
@@ -113,7 +114,7 @@ router.get('/:id', function(request, response) {
  *       200:
  *         description: Successfully created
  */
-router.post('/', function(request, response) {
+router.post('/', function (request, response) {
     let user = request.body;
     user.id = generateID();
     users.push(user);
@@ -143,7 +144,7 @@ router.post('/', function(request, response) {
  *       200:
  *         description: Successfully created
  */
-router.put('/', function(request, response) {
+router.put('/', function (request, response) {
     let editedUser = request.body;
     let found = users.find(user => user.id == editedUser.id);
     if (found) {
@@ -171,7 +172,7 @@ router.put('/', function(request, response) {
  *       200:
  *         description: Successfully deleted
  */
-router.delete('/:id', function(request, response) {
+router.delete('/:id', function (request, response) {
     if (request.params.id == 10) {
         response.status(500).send('cant delete user with id 10');
         return;

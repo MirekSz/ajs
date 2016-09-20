@@ -18,18 +18,16 @@
 
 <body>
     <br/>
-    <div class="container col-xs-12 col-md-6">
+    <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Users</h3>
-                <button class="btn btn-default pull-right" id="addUser">Add user</button>
+                <button class="btn btn-default pull-right">Add user</button>
             </div>
             <div class="panel-body">
 
                 <table class="table table-striped table-hover" id="users">
                     <thead>
-                        <th>id</th>
-                        <th>First Name</th>
                     </thead>
                     <tbody>
                     </tbody>
@@ -37,11 +35,9 @@
             </div>
         </div>
     </div>
-    <div id="workspace" class="col-xs-12 col-md-5"></div>
 </body>
 
 </html>
-
 <script>
     $(document).ajaxStart(function() {
         NProgress.start();
@@ -50,7 +46,6 @@
         NProgress.done();
     });
 </script>
-
 <div class="modal fade rotate" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

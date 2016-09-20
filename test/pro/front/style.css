@@ -10,14 +10,6 @@
     border-top-right-radius: 5px;
 }
 
-table > tbody > tr.active-row > td {
-    background-color: #e6eeff;
-}
-
-table > tbody > tr:hover > td {
-    cursor: pointer;
-}
-
 /*.rotate {*/
     /*transform: rotate(180deg);*/
     /*transition: all 0.5s;*/

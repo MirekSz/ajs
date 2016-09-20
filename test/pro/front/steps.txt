@@ -4,7 +4,7 @@
 4. Ajax loader
 5. Details
 5.5 Active row css, pointer cursor
-6. Animation
+6. Animation, show hide z czasem, toggle
 6.5 Detail table col-xs-6
 6.8 Abort request
 6.9 Prefetch

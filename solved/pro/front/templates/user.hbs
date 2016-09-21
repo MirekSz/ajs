@@ -2,6 +2,7 @@
 <div class="body">
     <br/>
     <br/>
+    <input class="form-control" name="id" value="{{id}}" type="hidden" ></input>
     <div class="row">
         <div class="form-group col-xs-6">
             <label for="fName">Imię</label>
@@ -20,9 +21,9 @@
   </select>
   <br/>
     <div class="row">
-  {{#images}}
+  {{#phones}}
     <img src="{{this}}" class="col-xs-4"/>
-  {{/images}}
+  {{/phones}}
 </div>
     </div>
 </div>

@@ -45,6 +45,10 @@ function loadUsers() {
 
                 console.log($("table tbody tr.active-row").map((index, element) => $(element).attr('data-id')).toArray())
             })
+
+            $("table tbody tr td span.glyphicon.glyphicon-search").click(function(event) {
+                // event.stopPropagation();
+            })
         })
     });
 }
@@ -73,7 +77,7 @@ function showDetails(id) {
         loadTemplate('user').then(function(userTemplate) {
             let html = userTemplate(user);
             $("#workspace").html(html);
-            $("#workspace input,select").attr('readonly', 'true')
+            $("#workspace input, #workspace select").attr('readonly', 'true')
             animateShowDetails();
 
         });
@@ -123,12 +127,20 @@ function remove(id) {
         });
     });
 }
+var cache = {};
 
 function loadTemplate(name) {
+    if (cache[name]) {
+        var dfd = $.Deferred();
+        dfd.resolve(cache[name]);
+        return dfd;
+    }
     return $.ajax({
         type: 'GET',
         url: "templates/" + name + ".hbs"
     }).promise().then(function(data) {
-        return Handlebars.compile(data);
+        let compiled = Handlebars.compile(data);;
+        cache[name] = compiled;
+        return compiled
     });
 }

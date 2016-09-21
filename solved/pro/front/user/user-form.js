@@ -40,7 +40,6 @@ function show(id) {
             $('#myModal').modal({})
         })
     })
-    return false;
 }
 
 function addUser() {

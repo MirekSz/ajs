@@ -1,0 +1,14 @@
+{{#users}}
+    <tr data-id={{id}}>
+        <td>
+            </a>{{id}}</td>
+        <td>{{fName}}</td>
+        <td>{{lName}}</td>
+        <td>{{age}}</td>
+        <td>{{sex}}</td>
+        <td>
+            <a href="#" onclick="show({{id}})"> <span class="glyphicon glyphicon-search"></span>
+                <a href="#" onclick="remove({{id}})"> <span class="glyphicon glyphicon-remove"></span>
+        </td>
+    </tr>
+{{/users}}

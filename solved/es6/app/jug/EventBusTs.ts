@@ -29,7 +29,6 @@ class EventBus<L extends Listener> {
 
 export var eb = new EventBus();
 
-
 var listener = {
     eventName: 'RowSelected', handle: (data)=> {
     }

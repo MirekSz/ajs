@@ -13,7 +13,7 @@ class TableComponent {
 
     bindWithModel(model) {
         this.model = model;
-        this.model.addModelChangeListener(()=> {
+        this.model.addModelChangeListener(() => {
             this.reRender();
         })
     }
@@ -25,7 +25,11 @@ class TableComponent {
 
     renderTo(target) {
         this.target = target;
-        target.html(template({columns: this.model.columns, rows: this.model.rows, styles}));
+        target.html(template({
+            columns: this.model.columns,
+            rows: this.model.rows,
+            styles
+        }));
     }
 
 

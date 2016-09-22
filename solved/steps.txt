@@ -1,16 +1,16 @@
 0. Bootstrap table
-1.Selector dodawanie/usuwanie
+1. Selector dodawanie/usuwanie
 2. ajax, loader spinner
-3.Handlebars
+3. template string, Handlebars
 4. Ajax loader
-5. Details
+5. Details, jak pobrac id wiersza
 5.5 Active row css, pointer cursor
 6. Animation, show hide z czasem, toggle
 6.5 Detail table col-xs-6
-6.8 Abort request
-6.9 Prefetch
+6.8 Abort request *
+6.9 Prefetch *
 7. Images
-8. Modal, bootstrap modal
+8. Modal, bootstrap modal (stop details table)
 9. AddUser (form data)
 10. Walidation
 11. Modal animation

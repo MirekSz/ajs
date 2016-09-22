@@ -1,5 +1,17 @@
 $(document).ready(function() {
-
+    $("table tbody").empty();
+    $("#workspace").empty();
+    $.ajax({
+        type: 'GET',
+        url: "http://localhost:3100/users"
+    }).then(function(users) {
+        loadTemplate('user-rows').then(function(template) {
+            var rows = template({
+                users: users
+            });
+            $("table tbody").append(rows);
+        })
+    })
 });
 
 

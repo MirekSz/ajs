@@ -24,7 +24,6 @@ class EventBus {
     }
 }
 
-
 export var eb = new EventBus();
 
 var listener = {

@@ -10,6 +10,10 @@
     border-top-right-radius: 5px;
 }
 
+table tbody tr:hover{
+  cursor: pointer;
+}
+
 /*.rotate {*/
     /*transform: rotate(180deg);*/
     /*transition: all 0.5s;*/

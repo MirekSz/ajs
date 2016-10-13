@@ -26,7 +26,7 @@ $(document).ready(function() {
 
 function loadUsers() {
     $("table tbody").empty();
-    $("#workspace").empty();
+    $("#workspace").find("div.content").empty();
     $.ajax({
         type: 'GET',
         url: "http://localhost:3100/users"
@@ -54,16 +54,8 @@ function loadUsers() {
 }
 
 var currentRequest;
-var nextDetails;
 
 function showDetails(id) {
-    if (nextDetails) {
-        $("#workspace").html(nextDetails);
-
-        animateDetails();
-        nextDetails = undefined;
-        return;
-    }
     if (currentRequest) {
         currentRequest.abort();
     }
@@ -76,7 +68,8 @@ function showDetails(id) {
     }).done(function(user) {
         loadTemplate('user').then(function(userTemplate) {
             let html = userTemplate(user);
-            $("#workspace").html(html);
+            debugger
+            $("#workspace").find("div.content").html(html);
             $("#workspace input, #workspace select").attr('readonly', 'true')
             animateShowDetails();
 

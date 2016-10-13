@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("button:eq(0)").click(function() {
+    $("#addUser").click(function() {
         addUser();
     })
 

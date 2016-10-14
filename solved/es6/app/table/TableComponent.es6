@@ -30,6 +30,11 @@ class TableComponent {
             rows: this.model.rows,
             styles
         }));
+        return new Promise((resolve, reject)=> {
+            setTimeout(()=> {
+                resolve("data");
+            }, 700);
+        });
     }
 
 

@@ -7,7 +7,7 @@ describe('Table tests', function () {
     afterEach(function cleaning() {
         $("#workspace").empty();
     });
-    it('should execute table test', function () {
+    ita('should execute table test', async function () {
         //given
         let tableComponent = new TableComponent('Simple table');
 
@@ -22,7 +22,8 @@ describe('Table tests', function () {
 
 
         //when
-        tableComponent.renderTo($("#workspace"));
+        var data = await tableComponent.renderTo($("#workspace"));
+        
         //then
         expect($("#workspace table tbody tr")).to.have.length(4);
     });

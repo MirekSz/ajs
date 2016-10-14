@@ -18,7 +18,7 @@ var config = {
     //    './app/index.es6'],
     entry: {
         app: ['babel-polyfill', './app/index.es6', 'webpack-hot-middleware/client?reload=true'],
-        test: ['./tests/autoDiscovery.es6', 'webpack-hot-middleware/client?reload=true']
+        test: ['babel-polyfill', './tests/autoDiscovery.es6', 'webpack-hot-middleware/client?reload=true']
     },
     module: {
         preLoaders: [],
@@ -71,7 +71,7 @@ var config = {
 };
 
 
-deps.forEach(function(dep) {
+deps.forEach(function (dep) {
     var depPath = path.resolve(minified_libs, dep);
     config.resolve.alias[dep.split('/')[0]] = depPath;
     config.module.noParse.push(depPath);

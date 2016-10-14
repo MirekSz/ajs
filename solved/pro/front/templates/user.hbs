@@ -1,29 +1,28 @@
 <div class=""><h3><span class="glyphicon glyphicon-user"></span> {{id}}</h3></div>
 <div class="body">
-    <br/>
-    <br/>
-    <input class="form-control" name="id" value="{{id}}" type="hidden" ></input>
+    <input class="form-control" name="id" value="{{id}}" type="hidden"></input>
     <div class="row">
         <div class="form-group col-xs-6">
             <label for="fName">Imię</label>
-            <input class="form-control" name="fName" placeholder="Imię" value="{{fName}}" required="required" >
+            <input class="form-control" name="fName" placeholder="Imię" value="{{fName}}" required="required">
         </div>
         <div class="form-group col-xs-6">
             <label for="lName">Nazwisko</label>
-            <input class="form-control" name="lName" placeholder="Nazwisko" value="{{lName}}" required="required" minlength="2" >
+            <input class="form-control" name="lName" placeholder="Nazwisko" value="{{lName}}" required="required"
+                   minlength="2">
         </div>
     </div>
     <div class="form-group">
         <label for="sel1">Select list:</label>
         <select class="form-control" name="sex" value="{{sex}}">
-              <option value="Mężczyzna" {{isSelected sex 'Mężczyzna'}}>M</option>
-              <option value="Kobieta"  {{isSelected sex 'Kobieta'}}>K</option>
-  </select>
-  <br/>
-    <div class="row">
-  {{#phones}}
-    <img src="{{this}}" class="col-xs-4"/>
-  {{/phones}}
-</div>
+            <option value="Mężczyzna" {{isSelected sex 'Mężczyzna'}}>M</option>
+            <option value="Kobieta"  {{isSelected sex 'Kobieta'}}>K</option>
+        </select>
+        <br/>
+        <div class="row">
+            {{#phones}}
+                <img src="{{this}}" class="col-xs-4"/>
+            {{/phones}}
+        </div>
     </div>
 </div>
